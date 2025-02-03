@@ -8,5 +8,14 @@
     "6080": {
       "label": "desktop"
     }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "redhat.java@1.32.0",
+        "vscjava.vscode-gradle"
+      ]
+    }
   }
 }
