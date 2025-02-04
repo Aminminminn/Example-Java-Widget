@@ -8,3 +8,5 @@
 .sonar/
 bin/
 build/
+
+gradle.properties
