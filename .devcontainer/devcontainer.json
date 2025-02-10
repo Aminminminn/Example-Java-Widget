@@ -15,7 +15,7 @@
         "vscjava.vscode-java-pack",
         "redhat.java@1.32.0",
         "vscjava.vscode-gradle",
-        "aminminminn.microej-eula"
+        "aminminminn.microej"
       ]
     }
   }
