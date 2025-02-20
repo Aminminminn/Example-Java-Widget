@@ -31,9 +31,3 @@ jobs:
       
     - name: Print mac address
       run: ip a
-
-    - name: Set mac address
-      run: sudo apt-get install macchanger && sudo ifconfig eth0 down && sudo macchanger -m C8:4B:D6:5C:C0:07 eth0 && sudo ifconfig eth0 up
-
-    - name: Run on device
-      run: ./gradlew runOnDevice

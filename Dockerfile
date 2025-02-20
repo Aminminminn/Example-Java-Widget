@@ -1,0 +1,1 @@
+WORKDIR /example-java-widget
