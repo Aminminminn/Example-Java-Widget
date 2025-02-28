@@ -27,11 +27,33 @@ dependencies {
 	implementation("ej.library.eclasspath:collections:1.4.0")
 	implementation("ej.library.eclasspath:stringtokenizer:1.2.0")
 
-	microejVee("com.microej.veeport.st.stm32f7508-dk:M5QNX_eval:2.2.0")
+	microejVee("com.nxp.vee.mimxrt1170:evk_platform:2.2.0")
 }
 
 tasks.withType<Javadoc> {
 	options.encoding = "UTF-8"
+}
+
+/*
+tasks.register<Exec>("chmodVee") {
+	dependsOn("loadVee")
+
+	commandLine("chmod", "-R", "+x", "/home/build/workspace/build")
+}
+*/
+
+tasks.register("chmodVee") {
+	dependsOn("loadVee")
+
+	doLast {
+		val f = File("/home/build/workspace/build/vee/bsp/projects/microej/scripts/set_project_env.sh")
+
+		f.appendText("chmod -f +x \$BINARY_DIR/../*.sh" + System.getProperty("line.separator"))
+	}
+}
+
+tasks.named("buildExecutable") {
+	dependsOn("chmodVee")
 }
 
 testing {

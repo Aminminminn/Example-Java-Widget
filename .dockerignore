@@ -1,0 +1,12 @@
+.gradle
+.idea
+.vscode
+.DS_Store
+.settings
+.project
+.classpath
+.sonar/
+bin/
+build/
+
+gradle.properties
