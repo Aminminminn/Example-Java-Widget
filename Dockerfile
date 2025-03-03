@@ -32,4 +32,4 @@ COPY . /home/build/workspace
 
 RUN mv .microej/ ~/
 
-CMD ./gradlew buildExecutable --info
+CMD ./gradlew buildApplicationObjectFile --info

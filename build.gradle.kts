@@ -6,7 +6,7 @@
  */
 
 plugins {
-	id("com.microej.gradle.application") version "0.15.0"
+	id("com.microej.gradle.application") version "1.0.0"
 }
 
 group = "com.microej.example.ui"
@@ -14,7 +14,7 @@ version = "8.1.0"
 val userHome = System.getProperty("user.home")
 
 microej {
-	applicationMainClass = "com.microej.demo.widget.common.Navigation"
+	applicationEntryPoint = "com.microej.demo.widget.common.Navigation"
 }
 
 dependencies {
@@ -27,7 +27,8 @@ dependencies {
 	implementation("ej.library.eclasspath:collections:1.4.0")
 	implementation("ej.library.eclasspath:stringtokenizer:1.2.0")
 
-	microejVee("com.nxp.vee.mimxrt1170:evk_platform:2.2.0")
+	//microejVee("com.nxp.vee.mimxrt1170:evk_platform:2.2.0")
+	microejVee(files("./veePort.zip"))
 }
 
 tasks.withType<Javadoc> {
@@ -38,7 +39,7 @@ tasks.withType<Javadoc> {
 tasks.register<Exec>("chmodVee") {
 	dependsOn("loadVee")
 
-	commandLine("chmod", "-R", "+x", "/home/build/workspace/build")
+	commandLine("chmod", "-R", "+x", "/home/build/workspace/build/bsp/projects")
 }
 */
 
@@ -46,13 +47,14 @@ tasks.register("chmodVee") {
 	dependsOn("loadVee")
 
 	doLast {
-		val f = File("/home/build/workspace/build/vee/bsp/projects/microej/scripts/set_project_env.sh")
+		//val f = File("/home/build/workspace/build/bsp/projects/microej/scripts/build.sh")
 
-		f.appendText("chmod -f +x \$BINARY_DIR/../*.sh" + System.getProperty("line.separator"))
+		//f.writeText(f.readText().replace("set -euo pipefail", "echo 'Line set -euo pipefail removed'"))
+		//f.writeText(f.readText().replace("chmod -f +x \$BINARY_DIR/../*.sh || true", "chmod +x \$SCRIPT_DIR/armgcc/*.sh || true"))
 	}
 }
 
-tasks.named("buildExecutable") {
+tasks.named("buildApplicationObjectFile") {
 	dependsOn("chmodVee")
 }
 
