@@ -38,7 +38,7 @@ tasks.withType<Javadoc> {
 tasks.register<Exec>("scriptsLF") {
 	dependsOn("loadVee")
 
-	commandLine("find", ".", "-type", "f", "-name", "'*.sh'", "-exec", "chmod", "+x", "{}")
+	commandLine("find", ".", "-type", "f", "-name", "'*.sh'", "-exec", "chmod", "+x", "{}", "+")
 }
 
 tasks.named("buildExecutable") {
