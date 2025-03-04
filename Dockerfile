@@ -11,7 +11,7 @@ RUN apt-get update && \
         xz-utils \
         pipx
 
-RUN pipx ensurepath
+ENV PATH="$PATH:/root/.local/bin"
 RUN pipx install west
 
 # Install cmake
