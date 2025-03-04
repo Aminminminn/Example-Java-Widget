@@ -35,6 +35,7 @@ tasks.withType<Javadoc> {
 	options.encoding = "UTF-8"
 }
 
+/*
 tasks.register<Exec>("fixScripts") {
 	dependsOn("loadVee")
 
@@ -45,6 +46,7 @@ tasks.register<Exec>("fixScripts") {
 tasks.named("buildExecutable") {
 	dependsOn("fixScripts")
 }
+*/
 
 testing {
 	suites {
