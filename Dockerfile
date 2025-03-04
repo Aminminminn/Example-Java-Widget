@@ -9,7 +9,8 @@ RUN apt-get update && \
         ninja-build \
         xvfb \
         xz-utils \
-        pipx
+        pipx \
+        git-all
 
 ENV PATH="$PATH:/root/.local/bin"
 RUN pipx install west
