@@ -1,0 +1,106 @@
+<!--
+	ANT
+
+	Copyright 2023 MicroEJ Corp. All rights reserved.
+	Use of this source code is governed by a BSD-style license that can be found with this software.
+-->
+<project name="com.microej.tool;cppcheck" xmlns:ea="antlib:org.apache.easyant">
+
+	<ea:plugin module="phases-std" revision="0.9" />
+	
+    <target name="cppcheck:build" extensionOf="package">
+    	<!--
+    		Build here all the artifacts to publish.
+    	-->
+    
+    	<!--
+    		Available properties are :
+    		- target.artifacts: directory where the artifacts to publish must be copied  
+    		- target.main.artifact: path (without the extension) of the main artifact to publish   
+    		
+    		By default, EasyAnt does not retrieve the dependencies, it only resolves them. 
+    		Resolving dependencies consists in resolving dependencies described in an ivy file, and putting the resolved dependencies in the ivy cache.
+
+			Ivy defines some post resolve tasks that can be used in easyant to manage the resolved artifacts.
+			The post resolved tasks shared some behaviour and attributes common to all post resolve tasks.
+			Here is a summary of the main post resolve tasks:
+    		- ivy:cachepath: Constructs an ant path consisting of artifacts in ivy cache (or origin location with depending on useOrigin setting) for a resolved module configuration.
+    		- ivy:retrieve: Copies resolved dependencies anywhere you want in your file system.
+    		- ivy:artifactproperty: Sets an ant property for each dependency artifacts previously resolved. Must be used in conjunction with ivy:retrieve.
+    		
+    		Here are some examples of the usage of these tasks: 
+    		
+    			Put in the "deps.path" path all the resolved jars
+				<ivy:cachepath pathid="deps.path" type="jar"/>
+				
+				Display the path 'deps.path'
+				<echo message="deps.path=${toString:deps.path}"/>
+
+				Define the pattern that describes where the dependencies are copied during the retrieve
+				<property name="retrieve.pattern" location="dependencies~/[artifact](-[classifier]).[ext]"/>
+
+				Copies the resolved artifacts from the ivy cache to the desired directory
+				<ivy:retrieve pattern="${retrieve.pattern}"/>
+
+				Define for each artifact a property that contains the path of the retrieved artifact.
+				This task uses the 'retrieve.pattern' property and must be called after the ivy:retrieve task.
+				<ivy:artifactproperty name="artifact.[artifact](-[classifier]).[ext]" value="${retrieve.pattern}"/>
+
+				Display the paths of the edc-1.2-api RIP and JAR. 
+				These properties have been defined by the ivy:artifact.property task.
+				<echo message="artifact.edc-1.2-api.rip=${artifact.edc-1.2-api.rip}"/>
+				<echo message="artifact.edc-1.2-api.jar=${artifact.edc-1.2-api.jar}"/>
+    	-->
+    	
+    	<!--
+    		There are 2 ways to declare the artifacts to publish:
+    		- Declare them in the module.ivy file
+    		- Register them in the module.ant file
+    	-->
+    	
+    	<!--
+    		Example of declaration in the module.ivy:
+    		
+    		module.ivy:
+    		…
+    		<publications>
+    			<artifact ext="zip"/>
+    		</publications>
+    		…
+    		
+    		module.ant:
+    		<zip destfile="${target.main.artifact}.zip" …/>    		
+    	-->
+    	    	
+    	<!--
+    		Example of registration from the module.ant:
+    		
+    		module.ant:
+    		<zip destfile="${target.main.artifact}.zip" …/>
+    		<ea:registerartifact type="zip"/>
+    		
+    		
+    		Advanced example with more customization:
+    		<zip destfile="${target.artifacts}/bidou.zip" …/>
+    		<ea:registerartifact type="zip" name="bidou" conf="default"/>
+    	-->
+    	
+    	<!-- Build MicroEJ Cppcheck tool artifact -->
+    	<zip destfile="${target.main.artifact}.zip">
+    		<fileset dir="${basedir}">
+    			<exclude name=".project"/>
+    			<exclude name=".gh*"/>
+    			<exclude name=".git*"/>
+    			<exclude name="Jenkinsfile"/>
+    			<exclude name="README.md"/>
+    			<exclude name="CHANGELOG.md"/>
+    			<exclude name="LICENSE.txt"/>
+    			<exclude name="target~/"/>
+    			<exclude name="module.ant"/>
+    			<exclude name="module.ivy"/>
+    			<include name="*/**"/>
+    		</fileset>
+		</zip>
+    </target>
+
+</project>
