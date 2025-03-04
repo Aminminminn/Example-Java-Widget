@@ -11,6 +11,7 @@ RUN apt-get update && \
         xz-utils \
         pipx
 
+RUN pipx ensurepath
 RUN pipx install west
 
 # Install cmake
