@@ -24,7 +24,7 @@ endif
 
 JLINK_SCRIPT="jlink_flash.script"
 
-MAKE = ninja
+MAKE = ninja-build
 OBJCOPY="$(ARMGCC_DIR)/bin/arm-none-eabi-objcopy"
 
 
