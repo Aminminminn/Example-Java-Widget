@@ -8,7 +8,10 @@ RUN apt-get update && \
         wget \
         ninja-build \
         xvfb \
-        xz-utils
+        xz-utils \
+        pipx
+
+RUN pipx install west
 
 # Install cmake
 RUN wget https://cmake.org/files/v3.30/cmake-3.30.3-linux-x86_64.tar.gz
@@ -25,6 +28,15 @@ RUN tar -xf arm-gnu-toolchain-13.2.rel1-x86_64-arm-none-eabi.tar.xz --directory=
 # Add ARGMCC_DIR environment variable
 ENV ARMGCC_DIR=/opt/arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi/
 
+
+# Fetch VEE Port
+RUN mkdir nxpvee-mimxrt1170-prj
+RUN cd nxpvee-mimxrt1170-prj
+RUN west init -m https://github.com/nxp-mcuxpresso/nxp-vee-imxrt1170-evk .
+RUN west update
+
+
+# Build the project application
 ENV ACCEPT_MICROEJ_SDK_EULA_V3_1C=YES ACCEPT_MICROEJ_SDK_EULA_V3_1B=YES
 
 WORKDIR /home/build/workspace
