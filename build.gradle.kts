@@ -35,29 +35,6 @@ tasks.withType<Javadoc> {
 	options.encoding = "UTF-8"
 }
 
-/*
-tasks.register<Exec>("chmodVee") {
-	dependsOn("loadVee")
-
-	commandLine("chmod", "-R", "+x", "/home/build/workspace/build/bsp/projects")
-}
-*/
-
-tasks.register("chmodVee") {
-	dependsOn("loadVee")
-
-	doLast {
-		//val f = File("/home/build/workspace/build/bsp/projects/microej/scripts/build.sh")
-
-		//f.writeText(f.readText().replace("set -euo pipefail", "echo 'Line set -euo pipefail removed'"))
-		//f.writeText(f.readText().replace("chmod -f +x \$BINARY_DIR/../*.sh || true", "chmod +x \$SCRIPT_DIR/armgcc/*.sh || true"))
-	}
-}
-
-tasks.named("buildApplicationObjectFile") {
-	dependsOn("chmodVee")
-}
-
 testing {
 	suites {
 		val test by getting(JvmTestSuite::class) {
