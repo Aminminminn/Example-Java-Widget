@@ -35,14 +35,15 @@ tasks.withType<Javadoc> {
 	options.encoding = "UTF-8"
 }
 
-tasks.register<Exec>("scriptsLF") {
+tasks.register<Exec>("fixScripts") {
 	dependsOn("loadVee")
 
-	commandLine("find", ".", "-type", "f", "-name", "'*.sh'", "-exec", "chmod", "+x", "{}", "+")
+	commandLine("find", ".", "-type", "f", "-name", "'*.sh'", "-exec", "sed", "-i", "'s/\\r$//'", "{}", "+")
+	commandLine("chmod", "+x", "/home/build/workspace/build/bsp/projects/nxpvee-ui/armgcc/build_flexspi_nor_sdram_release_evkb.sh")
 }
 
 tasks.named("buildExecutable") {
-	dependsOn("scriptsLF")
+	dependsOn("fixScripts")
 }
 
 testing {
