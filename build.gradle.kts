@@ -38,7 +38,7 @@ tasks.withType<Javadoc> {
 tasks.register<Exec>("fixScripts") {
 	dependsOn("loadVee")
 
-	commandLine("find", ".", "-type", "f", "-name", "'*.sh'", "-exec", "sed", "-i", "'s/\\r$//'", "{}", "+", "&&", "find", ".", "-type", "f", "-name", "'Makefile'", "-exec", "sed", "-i", "'s/\\r$//'", "{}", "+")
+	commandLine("find", ".", "-type", "f", "-name", "'*.sh'", "-exec", "sed", "-i", "'s/\\r$//'", "{}", "+")
 	//commandLine("chmod", "+x", "/home/build/workspace/build/bsp/projects/nxpvee-ui/armgcc/build_flexspi_nor_sdram_release_evkb.sh")
 }
 
