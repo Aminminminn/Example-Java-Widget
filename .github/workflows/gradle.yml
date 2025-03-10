@@ -36,6 +36,9 @@ jobs:
     - name: Build executable
       run: docker run --rm --volume ./build:/home/build/workspace/build --mac-address="C8:4B:D6:5C:C0:07" --name="build" examplejavawidget
 
+    - name: Remove tmp folder
+      run: sudo rm -r ./build/tmp 
+
     - uses: actions/upload-artifact@v4
       with:
         name: build-artifact
