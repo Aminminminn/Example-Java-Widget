@@ -27,8 +27,8 @@ dependencies {
 	implementation("ej.library.eclasspath:collections:1.4.0")
 	implementation("ej.library.eclasspath:stringtokenizer:1.2.0")
 
-	//microejVee("com.nxp.vee.mimxrt1170:evk_platform:2.2.0")
-	microejVee(files("./veePort.zip"))
+	microejVee("com.nxp.vee.mimxrt1170:vee-port:3.0.0")
+	//microejVee(files("./veePort.zip"))
 }
 
 tasks.withType<Javadoc> {
