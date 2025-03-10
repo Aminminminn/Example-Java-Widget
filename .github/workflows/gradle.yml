@@ -59,6 +59,10 @@ jobs:
         name: build-artifact
         path: ./build
 
-    - name: Run on device
-      run: ./gradlew runOnDevice --info
+    - name: Rename .out to .elf
+      run: cd ./build/application/executable && ren application.out application.elf
+      shell: cmd
+
+    - name: Flash on board
+      run: LinkServer flash MIMXRT1176xxxxx:MIMXRT1170-EVKB load .\application.elf
       shell: cmd
