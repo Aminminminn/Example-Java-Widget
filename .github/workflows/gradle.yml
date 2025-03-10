@@ -36,9 +36,6 @@ jobs:
     - name: Build executable
       run: docker run --rm --volume ./build:/home/build/workspace/build --mac-address="C8:4B:D6:5C:C0:07" --name="build" examplejavawidget
 
-    - name: Remove tmp folder
-      run: sudo rm -r ./build/tmp 
-
     - uses: actions/upload-artifact@v4
       with:
         name: build-artifact
@@ -60,5 +57,5 @@ jobs:
         path: ./build
 
     - name: Run on device
-      run: ./gradlew runOnDevice --info -x loadVee -x buildExecutable -x buildApplicationObjectFile -x fixScripts
+      run: ./gradlew runOnDevice --info -x loadVee -x buildExecutable -x buildApplicationObjectFile
       shell: cmd

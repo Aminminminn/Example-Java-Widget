@@ -28,25 +28,11 @@ dependencies {
 	implementation("ej.library.eclasspath:stringtokenizer:1.2.0")
 
 	microejVee("com.nxp.vee.mimxrt1170:vee-port:3.0.0")
-	//microejVee(files("./veePort.zip"))
 }
 
 tasks.withType<Javadoc> {
 	options.encoding = "UTF-8"
 }
-
-/*
-tasks.register<Exec>("fixScripts") {
-	dependsOn("loadVee")
-
-	//commandLine("find", ".", "-type", "f", "-name", "'*.sh'", "-exec", "sed", "-i", "'s/\\r$//'", "{}", "+")
-	//commandLine("chmod", "+x", "/home/build/workspace/build/bsp/projects/nxpvee-ui/armgcc/build_flexspi_nor_sdram_release_evkb.sh")
-}
-
-tasks.named("buildExecutable") {
-	dependsOn("fixScripts")
-}
-*/
 
 testing {
 	suites {
