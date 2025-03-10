@@ -64,5 +64,5 @@ jobs:
       shell: cmd
 
     - name: Flash on board
-      run: LinkServer flash MIMXRT1176xxxxx:MIMXRT1170-EVKB load .\application.elf
+      run: cd ./build/application/executable && LinkServer flash MIMXRT1176xxxxx:MIMXRT1170-EVKB load .\application.elf
       shell: cmd
