@@ -60,5 +60,5 @@ jobs:
         path: ./build
 
     - name: Run on device
-      run: ./gradlew runOnDevice --info -x buildExecutable -x buildApplicationObjectFile
+      run: ./gradlew runOnDevice --info
       shell: cmd
