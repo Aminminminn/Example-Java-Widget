@@ -59,10 +59,6 @@ jobs:
         name: build-artifact
         path: ./build
 
-    - name: Rename .out to .elf
-      run: cd ./build/application/executable && ren application.out application.elf
-      shell: cmd
-
     - name: Flash on board
-      run: cd ./build/application/executable && LinkServer flash MIMXRT1176xxxxx:MIMXRT1170-EVKB load .\application.elf
+      run: ./scripts/flash.bat
       shell: cmd
