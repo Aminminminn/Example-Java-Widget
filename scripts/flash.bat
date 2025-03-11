@@ -3,7 +3,7 @@
 SET CURRENT_DIRECTORY=%CD%
 ECHO "Current directory: %CURRENT_DIRECTORY%"
 
-cd ../build/application/executable/
+cd /build/application/executable/
 
 REM Need to rename the .out into .elf to call the LinkServer flash cmd
 ren application.out application.elf
