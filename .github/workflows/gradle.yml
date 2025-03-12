@@ -60,5 +60,5 @@ jobs:
         path: ./build
 
     - name: Flash on board
-      run: ./scripts/flash.bat
+      run: '%userprofile%/.microej/scripts/flash.bat'
       shell: cmd
