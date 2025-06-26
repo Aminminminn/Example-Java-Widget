@@ -1,8 +1,7 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
-    "ghcr.io/devcontainers/features/desktop-lite:1": {},
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    "ghcr.io/devcontainers/features/desktop-lite:1": {}
   },
   "forwardPorts": [6080],
   "portsAttributes": {
@@ -14,8 +13,6 @@
     "vscode": {
       "extensions": [
         "vscjava.vscode-java-pack",
-        "redhat.java@1.32.0",
-        "vscjava.vscode-gradle",
         "microej.microej"
       ]
     }

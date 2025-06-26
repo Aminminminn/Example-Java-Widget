@@ -6,7 +6,7 @@
  */
 
 plugins {
-	id("com.microej.gradle.application") version "1.0.0"
+	id("com.microej.gradle.application") version "1.2.0"
 }
 
 group = "com.microej.example.ui"
